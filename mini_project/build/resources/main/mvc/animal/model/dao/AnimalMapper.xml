@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mvc.animal.model.dao.AnimalMapper">
+
+    <select id="selectOneAniById" resultType="mvc.animal.model.dto.AnimalDTO">
+        SELECT
+            animal_code,
+            animal_gender,
+            animal_color,
+            animal_age,
+            animal_weight,
+            built_in_chip,
+            neutering_surgery,
+            animal_collar,
+            rescue_date,
+            capture_place,
+            health_condition,
+            category_code
+        FROM
+            tbl_animal
+        WHERE
+            animal_code = #{ animalCode }
+    </select>
+    <select id="selectAllAni" resultType="mvc.animal.model.dto.AnimalDTO">
+        SELECT
+            *
+        FROM
+            tbl_animal
+    </select>
+
+    <insert id="insertAni">
+        INSERT
+        INTO tbl_animal
+        (
+            animal_gender,
+            animal_color,
+            animal_age,
+            animal_weight,
+            built_in_chip,
+            neutering_surgery,
+            animal_collar,
+            rescue_date,
+            capture_place,
+            health_condition,
+            category_code
+        )
+        VALUES
+        (
+            #{ animalGender },
+            #{ animalColor },
+            #{ animalAge },
+            #{ animalWeight },
+            #{ builtInChip },
+            #{ neuteringSurgery },
+            #{ animalCollar },
+            #{ rescueDate },
+            #{ capturePlace },
+            #{ healthCondition },
+            #{ categoryCode }
+        )
+    </insert>
+    <update id="updateAni">
+        UPDATE
+            tbl_animal
+        SET
+            built_in_chip = #{ builtInChip },
+            neutering_surgery = #{ neuteringSurgery },
+            animal_collar = #{ animalCollar }
+        WHERE
+            animal_code = #{ animalCode }
+    </update>
+    <delete id="deleteAni">
+        DELETE FROM
+            tbl_animal
+        WHERE
+            animal_code = #{ animalCode }
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
